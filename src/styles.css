@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+body {
+    font-size: 14px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-color: #f5f8fa;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+input {
+    font-size: 14px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    color: #666;
+    padding: 4px 14px;
+    border: 1px solid #99CDE1;
+}
+
+*:focus {
+    outline: none;
+}
+
+.app {
+    display: flex;
+    justify-content: center;
+}
+
+.view {
+    padding: 56px 0 0;
+}
+
+.container {
+    width: 600px;
+}/* You can add global styles to this file, and also import other style files */

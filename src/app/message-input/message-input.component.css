@@ -1,0 +1,18 @@
+.input-message {
+    border: 1px solid #e1e8ed;
+    background-color: #E5F2F7;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.input-message__content {
+    width: 100%;
+    box-sizing : border-box;
+    padding: 8px 10px;
+    border: 1px solid #99CDE1;
+}
+
+.input-message__content:focus {
+    border-color: #56b4ef;
+}

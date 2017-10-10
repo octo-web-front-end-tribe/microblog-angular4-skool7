@@ -1,0 +1,18 @@
+.message{
+    padding: 10px;
+    line-height: 18px;
+    color: #292f33;
+    background-color: #ffffff;
+    list-style-type: none;
+    border: 1px solid #e1e8ed;
+    border-top: none;
+}
+
+.message__author {
+    display: block;
+    font-weight: 600;
+}
+
+.message__content {
+    display: block;
+}

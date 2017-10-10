@@ -1,0 +1,7 @@
+<div class="input-message">
+    <input class="input-message__content"
+           placeholder="Quoi de neuf ?"
+           [(ngModel)]="textMessage"
+           (keyup.enter)="addMessage()"
+           autofocus="true">
+</div>

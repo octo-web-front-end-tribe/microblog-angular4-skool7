@@ -1,0 +1,7 @@
+<div class="message-list">
+  <ul class="message-list__ul">
+      <li *ngFor="let message of messages" class="message-list__li">
+          <app-message-item [message]="message"></app-message-item>
+      </li>
+  </ul>
+</div>
