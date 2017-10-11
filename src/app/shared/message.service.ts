@@ -11,8 +11,10 @@ export class MessageService {
 
   constructor(private http: Http) { }
 
-  getMessages(): Array<Message> {
-    return [new Message('FLM', 'yeah')];
+  getMessages(): Observable<Message[]> {
+    return this.http
+        .get(this.API_URL)
+        .map(response => response.json() as Message[]);
   }
 
 

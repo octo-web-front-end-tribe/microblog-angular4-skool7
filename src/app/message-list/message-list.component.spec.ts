@@ -5,6 +5,8 @@ import {MessageItemComponent} from './message-item/message-item.component';
 import {MessageService} from '../shared/message.service';
 import {Message} from '../shared/message';
 import {HttpModule} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 describe('MessageListComponent', () => {
     let component: MessageListComponent;
@@ -40,7 +42,7 @@ describe('MessageListComponent', () => {
 
         it('should get the message list from the service', () => {
             // given
-            spyOn(messageService, 'getMessages').and.stub();
+            spyOn(messageService, 'getMessages').and.returnValue(Observable.of());
 
             // when
             component.ngOnInit();
@@ -51,12 +53,13 @@ describe('MessageListComponent', () => {
 
         it('should set message list with service returned messages', () => {
             // given
-            spyOn(messageService, 'getMessages').and.returnValue([
+            spyOn(messageService, 'getMessages').and.returnValue(Observable.of([
                 new Message('John Doe', 'Hello I am John !')
-            ]);
+            ]));
 
             // when
             component.ngOnInit();
+            fixture.detectChanges();
 
             // then
             expect(component.messages).toEqual([

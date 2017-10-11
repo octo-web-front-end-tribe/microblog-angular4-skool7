@@ -12,6 +12,12 @@ describe('MessageService', () => {
 
     beforeEach(() => {
         httpStub = {
+            get: () => {
+                return Observable.create(observer => {
+                    observer.next({json: () => ([{id: 1, content: 'hello', author: 'John'}])});
+                    observer.complete();
+                });
+            },
             post: () => {
                 return Observable.create(observer => {
                     observer.next({json: () => ({id: 1, content: 'hello', author: 'John'})});
@@ -38,13 +44,31 @@ describe('MessageService', () => {
     });
 
     describe('#getMessages', () => {
-        it('should return the list of messages', () => {
+
+        beforeEach(() => {
+            messageService.API_URL = 'http://fake.base.url';
+        });
+
+        it('should get list of messages from API', inject([Http, MessageService], (http: Http, service: MessageService) => {
+            // given
+            const spy = spyOn(http, 'get').and.callThrough();
+
             // when
-            const result = messageService.getMessages();
+            service.getMessages().subscribe(() => {
+            });
 
             // then
-            expect(result).toEqual([new Message('FLM', 'yeah')]);
-        });
+            expect(spy).toHaveBeenCalledWith('http://fake.base.url');
+        }));
+
+        it('should return list of messages', inject([Http, MessageService], (http: Http, service: MessageService) => {
+            // when
+            service.getMessages().subscribe((messages: Message[]) => {
+                // then
+                expect(messages).toEqual([{id: 1, content: 'hello', author: 'John'}]);
+            });
+
+        }));
     });
 
     describe('#createMessage', () => {
