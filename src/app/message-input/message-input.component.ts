@@ -17,7 +17,10 @@ export class MessageInputComponent implements OnInit {
   }
 
   addMessage() {
-    this.messageService.createMessage(new Message('me', this.textMessage));
-    this.textMessage = '';
+    this.messageService
+        .createMessage(new Message('me', this.textMessage))
+        .subscribe(() => {
+          this.textMessage = '';
+        });
   }
 }

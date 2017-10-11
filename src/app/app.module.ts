@@ -7,6 +7,7 @@ import {MessageListComponent} from './message-list/message-list.component';
 import {FormsModule} from '@angular/forms';
 import {MessageInputComponent} from './message-input/message-input.component';
 import {MessageService} from './shared/message.service';
+import {HttpModule} from '@angular/http';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import {MessageService} from './shared/message.service';
     ],
     imports: [
         BrowserModule,
-        FormsModule
+        FormsModule,
+        HttpModule
     ],
     providers: [
         MessageService

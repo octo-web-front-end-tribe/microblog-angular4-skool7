@@ -4,6 +4,7 @@ import {MessageListComponent} from './message-list.component';
 import {MessageItemComponent} from './message-item/message-item.component';
 import {MessageService} from '../shared/message.service';
 import {Message} from '../shared/message';
+import {HttpModule} from '@angular/http';
 
 describe('MessageListComponent', () => {
     let component: MessageListComponent;
@@ -18,6 +19,9 @@ describe('MessageListComponent', () => {
             ],
             providers: [
                 MessageService
+            ],
+            imports: [
+                HttpModule
             ]
         }).compileComponents();
     }));
@@ -41,7 +45,7 @@ describe('MessageListComponent', () => {
             // when
             component.ngOnInit();
 
-            //then
+            // then
             expect(messageService.getMessages).toHaveBeenCalled();
         });
 
@@ -54,7 +58,7 @@ describe('MessageListComponent', () => {
             // when
             component.ngOnInit();
 
-            //then
+            // then
             expect(component.messages).toEqual([
                 new Message('John Doe', 'Hello I am John !')
             ]);

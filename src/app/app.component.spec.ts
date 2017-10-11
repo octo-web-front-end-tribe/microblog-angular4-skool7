@@ -6,12 +6,14 @@ import {MessageListComponent} from './message-list/message-list.component';
 import {MessageInputComponent} from './message-input/message-input.component';
 import {FormsModule} from '@angular/forms';
 import {MessageService} from './shared/message.service';
+import {HttpModule} from '@angular/http';
 
 describe('AppComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
-                FormsModule
+                FormsModule,
+                HttpModule
             ],
             declarations: [
                 AppComponent,
