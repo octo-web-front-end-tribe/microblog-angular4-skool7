@@ -17,7 +17,7 @@ export class MessageInputComponent implements OnInit {
   }
 
   addMessage() {
-    const message: Message = new Message('me', this.textMessage);
+    this.messageService.createMessage(new Message('me', this.textMessage));
     this.textMessage = '';
   }
 }
