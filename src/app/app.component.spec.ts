@@ -2,12 +2,12 @@ import {async, TestBed} from '@angular/core/testing';
 
 import {AppComponent} from './app.component';
 import {FormsModule} from '@angular/forms';
-import {MessageService} from './shared/message.service';
+import {MessageService} from './message-container/shared/message.service';
 import {HttpModule} from '@angular/http';
 import {MessageContainerComponent} from './message-container/message-container.component';
-import {MessageInputComponent} from './message-input/message-input.component';
-import {MessageListComponent} from './message-list/message-list.component';
-import {MessageItemComponent} from './message-list/message-item/message-item.component';
+import {MessageInputComponent} from './message-container/message-input/message-input.component';
+import {MessageListComponent} from './message-container/message-list/message-list.component';
+import {MessageItemComponent} from './message-container/message-list/message-item/message-item.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
