@@ -1,0 +1,18 @@
+.messages__footer {
+  font-size: 12px;
+  background-color: #f5f8fa;
+  border: 1px solid #e1e8ed;
+  border-top: none;
+  padding: 15px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #8899a6;
+  text-align: center;
+}
+
+.messages__footer-link {
+  color: #0084b4;
+}
+.messages__footer-link:hover {
+  text-decoration: underline;
+}
