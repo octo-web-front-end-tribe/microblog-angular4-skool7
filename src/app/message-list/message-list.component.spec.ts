@@ -69,9 +69,4 @@ describe('MessageListComponent', () => {
 
     });
 
-    describe('#addOneMessageIntoList', () => {
-      it('should be defined', () => {
-        expect(component.addOneMessageIntoList).toBeDefined();
-      });
-    });
 });

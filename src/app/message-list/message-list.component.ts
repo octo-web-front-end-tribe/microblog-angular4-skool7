@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Message} from '../shared/message';
 import {MessageService} from '../shared/message.service';
 
@@ -10,8 +10,7 @@ import {MessageService} from '../shared/message.service';
 export class MessageListComponent implements OnInit {
   messages: Array<Message>;
 
-  constructor(private messageService: MessageService) {
-  }
+  constructor(private messageService: MessageService) { }
 
   ngOnInit() {
     this.messageService.getMessages().subscribe((messages: Message[]) => {
@@ -19,7 +18,4 @@ export class MessageListComponent implements OnInit {
     });
   }
 
-  addOneMessageIntoList() {
-    return undefined;
-  }
 }

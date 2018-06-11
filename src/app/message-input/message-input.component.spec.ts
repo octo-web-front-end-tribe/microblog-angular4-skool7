@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, fakeAsync, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MessageInputComponent} from './message-input.component';
 import {FormsModule} from '@angular/forms';
@@ -8,93 +8,70 @@ import {HttpModule} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
-import {MessageListComponent} from '../message-list/message-list.component';
-
 describe('MessageInputComponent', () => {
-  let component: MessageInputComponent;
-  let fixture: ComponentFixture<MessageInputComponent>;
+    let component: MessageInputComponent;
+    let fixture: ComponentFixture<MessageInputComponent>;
+    let messageService: MessageService;
 
-  let componentList: MessageListComponent;
-  let fixtureList: ComponentFixture<MessageListComponent>;
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                FormsModule,
+                HttpModule
+            ],
+            providers: [MessageService],
+            declarations: [MessageInputComponent]
+        }).compileComponents();
+    }));
 
-  let messageService: MessageService;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-        HttpModule
-      ],
-      providers: [MessageService],
-      declarations: [
-        MessageInputComponent,
-        MessageListComponent
-      ]
-    }).compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MessageInputComponent);
-    component = fixture.componentInstance;
-
-    fixtureList = TestBed.createComponent(MessageListComponent);
-    componentList = fixtureList.componentInstance;
-
-    messageService = fixture.debugElement.injector.get(MessageService);
-  });
-
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
-
-  describe('onInit', () => {
-    it('should have an empty field', () => {
-      // when
-      component.ngOnInit();
-
-      // then
-      expect(component.textMessage).toEqual('');
+    beforeEach(() => {
+        fixture = TestBed.createComponent(MessageInputComponent);
+        component = fixture.componentInstance;
+        messageService = fixture.debugElement.injector.get(MessageService);
     });
-  });
 
-  describe('#addMessage', () => {
+    it('should be created', () => {
+        expect(component).toBeTruthy();
+    });
 
-    describe('when i post the message', () => {
-      beforeEach(() => {
-        // given
-        component.textMessage = 'Angular 4 is the best framework ever!';
-        spyOn(messageService, 'createMessage').and.returnValue(Observable.of());
-        spyOn(componentList, 'addOneMessageIntoList').and.returnValue(undefined);
+    describe('onInit', () => {
+        it('should have an empty field', () => {
+            // when
+            component.ngOnInit();
 
-        // when
-        component.addMessage();
-      });
+            // then
+            expect(component.textMessage).toEqual('');
+        });
+    });
 
-      it('should create new message by using the message service', () => {
-        // then
-        expect(messageService.createMessage).toHaveBeenCalledTimes(1);
-        expect(messageService.createMessage).toHaveBeenCalledWith(new Message('me', 'Angular 4 is the best framework ever!'));
-      });
+    describe('#addMessage', () => {
 
+        it('should create new message by using the message service', () => {
+            // given
+            component.textMessage = 'Angular 4 is the best framework ever!';
+            spyOn(messageService, 'createMessage').and.returnValue(Observable.of());
 
-      it('should call message-list component to add the new message', () => {
-        expect(componentList.addOneMessageIntoList).toHaveBeenCalledTimes(1);
-      });
+            // when
+            component.addMessage();
+
+            // then
+            expect(messageService.createMessage).toHaveBeenCalledTimes(1);
+            expect(messageService.createMessage).toHaveBeenCalledWith(new Message ('me', 'Angular 4 is the best framework ever!'));
+        });
+
+        it('should clean the textMessage input', () => {
+            // given
+            spyOn(messageService, 'createMessage').and.returnValue(Observable.of());
+            component.textMessage = 'blabla';
+
+            // when
+            component.addMessage();
+            fixture.detectChanges();
+
+            // then
+            expect(component.textMessage).toEqual('');
+        });
     });
 
 
-    it('should clean the textMessage input', () => {
-      // given
-      spyOn(messageService, 'createMessage').and.returnValue(Observable.of());
-      component.textMessage = 'blabla';
-
-      // when
-      component.addMessage();
-      fixture.detectChanges();
-
-      // then
-      expect(component.textMessage).toEqual('');
-    });
-
-  });
 });
